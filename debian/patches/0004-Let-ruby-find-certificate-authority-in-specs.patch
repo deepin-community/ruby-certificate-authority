@@ -1,0 +1,21 @@
+From: =?utf-8?q?C=C3=A9dric_Boutillier?= <boutil@debian.org>
+Date: Sun, 3 Dec 2017 00:06:49 +0100
+Subject: Let ruby find certificate-authority in specs
+
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=830071
+Forwarded: not-needed
+---
+ spec/spec_helper.rb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/spec/spec_helper.rb
++++ b/spec/spec_helper.rb
+@@ -6,7 +6,7 @@ require 'coveralls'
+ Coveralls.wear!
+ 
+ SPECDIR = Pathname(__FILE__).dirname
+-require SPECDIR.join('..', 'lib', 'certificate_authority').to_s
++require "certificate_authority"
+ 
+ def sample_file(name)
+   SPECDIR.join("samples", name)

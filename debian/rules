@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+export GEM2DEB_TEST_RUNNER = --check-dependencies
+
+%:
+	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_install:
+	dh_install
+	set -e && rm -rf $(CURDIR)/debian/ruby-certificate-authority/usr/lib/ruby/vendor_ruby/tasks
