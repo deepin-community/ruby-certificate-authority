@@ -1,3 +1,71 @@
+ruby-certificate-authority (1.1.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Debian Janitor ]
+  * Apply multi-arch hints. + ruby-certificate-authority: Add Multi-Arch: foreign.
+
+  [ Antonio Terceiro ]
+  * New upstream version 1.1.0
+  * Bump Standards-Version to 4.6.1; no changes needed
+  * Refresh patches
+  * Add patches to fix tests
+
+ -- Antonio Terceiro <terceiro@debian.org>  Mon, 19 Dec 2022 21:51:29 -0300
+
+ruby-certificate-authority (1.0.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * d/p/0004-remove-keyid-prefix-from-test-string.patch: Fix test causing
+    FTBFS due to OpenSSL 3 changes (Closes: #1011734).
+
+ -- Lucas Kanashiro <kanashiro@debian.org>  Tue, 19 Jul 2022 04:15:41 -0300
+
+ruby-certificate-authority (1.0.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Utkarsh Gupta ]
+  * Add salsa-ci.yml
+
+  [ Debian Janitor ]
+  * Bump debhelper from old 11 to 12.
+  * Set debhelper-compat version in Build-Depends.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit.
+  * Apply multi-arch hints.
+    + ruby-certificate-authority: Add :any qualifier for ruby dependency.
+
+  [ Antonio Terceiro ]
+  * debian/watch: point at github repository
+  * New upstream version 1.0.0
+    - Drop patches applied upstream:
+      + 0004-Let-ruby-find-certificate-authority-in-specs.patch
+      + 003_fix_generated_csr
+    - Replace debian/patches/002_disable_pkcs11_pkey_ref with a
+      exclude_pattern setting in debian/ruby-tests.rake
+  * debian/rules: install using Rubygems layout.
+    Don't avoid installing rake task now that that will not interfere with
+    the global namespace.
+  * debian/upstream/metadata: refresh from template
+  * debian/control: refresh from template
+    - Build-Depends:
+      + require debhelper-compat = 13, gem2deb >= 1
+      + add ruby-budler, pry to avoid having to patch corresponding
+        require statements from spec/spec_helper.rb
+    - Standards-Version: bump to 4.6.0 (no changes needed)
+    - Add Rules-Require-Root: no
+    - Depends: drop explicit ruby interepreter dependency in favor of
+      ${ruby:Depends}.
+  * Add patches:
+    - 0001-Build-a-string-config-for-OpenSSL-Config-as-opposed-.patch: add fix
+      for Ruby openssl 3.0.0 (Closes: #1005448)
+    - 0002-gemspec-don-t-use-git-to-get-list-of-files.patch: drop
+      git usage from gemspec.
+    - 0003-gemspec-don-t-load-file-from-lib-explicitly.patch: fix loading the
+      gemspec under autopkgtest (i.e. with lib/ moved out of the way).
+
+ -- Antonio Terceiro <terceiro@debian.org>  Sun, 20 Feb 2022 19:24:24 -0300
+
 ruby-certificate-authority (0.2.0~434c15cd-1) unstable; urgency=medium
 
   * New upstream version 0.2.0~434c15cd

@@ -1,0 +1,19 @@
+From: Antonio Terceiro <terceiro@debian.org>
+Date: Sun, 20 Feb 2022 19:31:25 -0300
+Subject: gemspec: don't load file from lib explicitly
+
+---
+ certificate_authority.gemspec | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/certificate_authority.gemspec b/certificate_authority.gemspec
+index 6be3cb9..b376bdd 100644
+--- a/certificate_authority.gemspec
++++ b/certificate_authority.gemspec
+@@ -1,4 +1,5 @@
+-require File.expand_path("lib/certificate_authority/version", __dir__)
++$LOAD_PATH << "lib"
++require "certificate_authority/version"
+ 
+ Gem::Specification.new do |spec|
+   spec.name = "certificate_authority"

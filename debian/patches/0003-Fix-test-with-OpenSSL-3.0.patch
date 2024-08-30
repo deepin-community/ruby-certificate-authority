@@ -1,0 +1,22 @@
+From: Antonio Terceiro <terceiro@debian.org>
+Date: Mon, 19 Dec 2022 21:39:58 -0300
+Subject: Fix test with OpenSSL 3.0
+
+Link: https://github.com/cchandler/certificate_authority/issues/62
+---
+ spec/units/certificate_spec.rb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/spec/units/certificate_spec.rb b/spec/units/certificate_spec.rb
+index 733eb71..f9fc7c7 100644
+--- a/spec/units/certificate_spec.rb
++++ b/spec/units/certificate_spec.rb
+@@ -423,7 +423,7 @@ CERT
+       expect(@cert_with_extensions.extensions["subjectKeyIdentifier"]).to eq(expected_subjectKeyIdentifier)
+ 
+       expected_authorityKeyIdentifier = CertificateAuthority::Extensions::AuthorityKeyIdentifier.new
+-      expected_authorityKeyIdentifier.identifier = "keyid:4C:58:CB:25:F0:41:4F:52:F4:28:C8:81:43:9B:A6:A8:A0:E6:92:E5"
++      expected_authorityKeyIdentifier.identifier = "4C:58:CB:25:F0:41:4F:52:F4:28:C8:81:43:9B:A6:A8:A0:E6:92:E5"
+       expect(@cert_with_extensions.extensions["authorityKeyIdentifier"]).to eq(expected_authorityKeyIdentifier)
+ 
+       expected_authorityInfoAccess = CertificateAuthority::Extensions::AuthorityInfoAccess.new
