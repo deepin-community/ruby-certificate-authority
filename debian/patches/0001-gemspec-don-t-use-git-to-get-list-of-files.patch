@@ -1,0 +1,23 @@
+From: Antonio Terceiro <terceiro@debian.org>
+Date: Sun, 20 Feb 2022 19:19:08 -0300
+Subject: gemspec: don't use git to get list of files
+
+---
+ certificate_authority.gemspec | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/certificate_authority.gemspec b/certificate_authority.gemspec
+index 43decf5..6be3cb9 100644
+--- a/certificate_authority.gemspec
++++ b/certificate_authority.gemspec
+@@ -13,9 +13,7 @@ Gem::Specification.new do |spec|
+   spec.metadata["homepage_uri"] = "https://github.com/cchandler/certificate_authority"
+   spec.metadata["source_code_uri"] = "https://github.com/cchandler/certificate_authority"
+ 
+-  spec.files = Dir.chdir(__dir__) do
+-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec/)}) }
+-  end
++  spec.files = Dir['**/*'] - Dir["debian/**/*"] - Dir["spec/**/*"]
+   spec.require_paths = ["lib"]
+ 
+   spec.required_ruby_version = ">= 2.4"

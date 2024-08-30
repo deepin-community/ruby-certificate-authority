@@ -1,0 +1,20 @@
+From: Antonio Terceiro <terceiro@debian.org>
+Date: Mon, 19 Dec 2022 21:43:34 -0300
+Subject: Skip test that fails depending on the local timezone
+
+---
+ spec/units/certificate_spec.rb | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/spec/units/certificate_spec.rb b/spec/units/certificate_spec.rb
+index f9fc7c7..f4dba9d 100644
+--- a/spec/units/certificate_spec.rb
++++ b/spec/units/certificate_spec.rb
+@@ -475,6 +475,7 @@ CERT
+   end
+ 
+   it "should default to one year validity" do
++    skip "this test fails depending on the local timezone"
+     day  = 60 * 60 * 24
+     year = day * 365
+     expect(@certificate.not_after).to be < Time.now + year + day and
